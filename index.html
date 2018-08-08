@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style type="text/css">
+        .calculator {
+
+            width: 270px;
+            height: 350px;
+            background: #000
+        }
+
+        .numlist li {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            list-style: none;
+            background: red;
+            text-align: center;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .eq li {
+            width: 170px;
+            height: 16px;
+            display: inline-block;
+            list-style: none;
+            background: #008000;
+            text-align: center;
+            color: black;
+            padding: 10px;
+
+        }
+
+        #txt1 {
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+
+        var firstInput = 0;
+        var op;
+
+        // function displaynum accespts 1 parameter
+        function displaynum(value) {
+
+
+            if (value == "add") {
+                firstInput = document.getElementById("txt1").value;
+                document.getElementById("txt1").value = " ";
+                op = "+";
+
+            } else if (value == "sub") {
+                firstInput = document.getElementById("txt1").value;
+                document.getElementById("txt1").value = " ";
+                op = "-";
+            }
+            else if (value == "mul") {
+                firstInput = document.getElementById("txt1").value;
+                document.getElementById("txt1").value = " ";
+                op = "*";
+            }
+            else if (value == "quo") {
+                firstInput = document.getElementById("txt1").value;
+                document.getElementById("txt1").value = " ";
+                op = "/";
+            }
+
+            else {
+
+                var numberTextbox = document.getElementById("txt1");
+                var currentValue = numberTextbox.value;
+                numberTextbox.value = currentValue + value;
+
+            }
+        }
+        function prinres(elem) {
+            debugger
+            if (elem == "equals") {
+                var currentValue = document.getElementById("txt1").value;
+                switch (op) {
+                    case '+':
+                        var sum = Number(firstInput) + Number(currentValue);
+                        document.getElementById("txt1").value = sum;
+                        break;
+                    case '-':
+                        var diff = Number(firstInput) - Number(currentValue);
+                        document.getElementById("txt1").value = diff;
+                        break;
+                    case '*':
+                        var mul = Number(firstInput) * Number(currentValue);
+                        document.getElementById("txt1").value = mul;
+                        break;
+                    case '/':
+                        var quo = Number(firstInput) / Number(currentValue);
+                        document.getElementById("txt1").value = quo;
+                        break;
+
+
+                }
+            }
+
+
+
+        }
+        function clean() {
+            document.getElementById("txt1").value = "";
+        }
+        function backsp() {
+            debugger
+            var text = document.getElementById("txt1").value;
+            text = text.slice(length, -1);
+            document.getElementById("txt1").value = text;
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="calculator">
+        <input type="text" name="txt1" id="txt1">
+        <ul class="numlist">
+
+            <li id="1" name="1" value="1" onclick="displaynum(1)">1</li>
+            <li id="2" name="2" value="2" onclick="displaynum(2)">2</li>
+            <li id="3" name="3" value="3" onclick="displaynum(3)">3</li>
+            <li onclick="displaynum('quo')">/</li>
+            <br>
+            <br>
+            <li id="4" name="4" value="4" onclick="displaynum(4)">4</li>
+            <li id="5" name="5" value="5" onclick="displaynum(5)">5</li>
+            <li id="6" name="6" value="6" onclick="displaynum(6)">6</li>
+            <li onclick="displaynum('mul')">*</li>
+            <br>
+            <br>
+            <li id="7" name="7" value="7" onclick="displaynum(7)">7</li>
+            <li id="8" name="8" value="8" onclick="displaynum(8)">8</li>
+            <li id="9" name="9" value="9" onclick="displaynum(9)">9</li>
+            <li onclick="displaynum('sub')">-</li>
+            <br>
+            <br>
+            <li id="bsp" onclick="backsp()">BSP</li>
+            <li id="0" name="0" value="0" onclick="displaynum(0)">0</li>
+            <li id="cln" onclick="clean()">C</li>
+            <li onclick="displaynum('add')">+</li>
+
+        </ul>
+        <ul class="eq">
+            <li onclick="prinres('equals')">=</li>
+
+
+        </ul>
+
+    </div>
+
+</body>
+
+</html>
